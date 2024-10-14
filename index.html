@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendas de Ferramentas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Loja de Ferramentas Online</h1>
+    <div class="menu">
+      <button id="addProduct">Cadastrar Produto</button>
+      <button id="listProducts">Listar Produtos</button>
+    </div>
+
+    <div class="form-section">
+      <h2>Cadastro de Produto</h2>
+      <form id="productForm">
+        <label for="name">Nome do Produto:</label>
+        <input type="text" id="name" required>
+
+        <label for="price">Preço:</label>
+        <input type="number" id="price" required>
+
+        <label for="stock">Quantidade em Estoque:</label>
+        <input type="number" id="stock" required>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+
+    <div id="productList">
+      <h2>Lista de Produtos</h2>
+      <ul id="products"></ul>
+    </div>
+  </div>
+
+  <! <script src="app.js" defer></script> -->
+
+  <script src="./dist/app.js" type="module" defer></script>
+
+  
+
+</body>
+</html>
+
+
+
