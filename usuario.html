@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+</head>
+<body>
+
+    <div class="entrada">
+        <label for="entrada" class="texto">Nome:</label>
+        <input type="text" placeholder="Digite aqui..." name="entrada" class="campo" id="campoEntrada">
+        <button onclick="salvarDados()">Salvar</button>
+    </div>
+
+    <h3>Dados Inseridos:</h3>
+    <div id="exibirDados"></div>
+
+    <script>
+        // Função que salva os dados e exibe na tela
+        function salvarDados() {
+            // Captura o valor do campo de entrada
+            const nome = document.getElementById("campoEntrada").value;
+
+            // Verifica se o campo não está vazio
+            if (nome) {
+                // Envia os dados para o backend via fetch
+                fetch('http://localhost:3000/salvar-nome', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nome: nome })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message); // Exibe a mensagem de sucesso
+                    } else {
+                        alert('Erro ao salvar o nome.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+
+                // Limpa o campo de entrada
+                document.getElementById("campoEntrada").value = "";
+            } else {
+                alert("Por favor, insira um nome.");
+            }
+        }
+
+        // Adiciona o evento de tecla para o campo de entrada
+        document.getElementById("campoEntrada").addEventListener("keydown", function(evento) {
+            // Verifica se a tecla pressionada foi o 'Enter'
+            if (evento.key === "Enter") {
+                evento.preventDefault(); // Evita o comportamento padrão
+                salvarDados(); // Chama a função de salvar os dados
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
